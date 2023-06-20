@@ -11,7 +11,7 @@ for (num = 0 ; num < 10 ; num++)
 {
 char x;
 
-ifor (x = 'a' ; x <= 'z' ; x++)
+for (x = 'a' ; x <= 'z' ; x++)
 {
 _putchar(x);
 }
