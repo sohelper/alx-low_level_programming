@@ -1,8 +1,7 @@
 #include "main.h"
 
 /**
- * jack_bauer - prints every minute of Jack Bauer's day
- * @a && @b: Contains the value 
+ * jack_bauer - prints every minute of Jack Bauer's day 
  * Return:void
  */
 
