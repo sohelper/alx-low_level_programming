@@ -3,7 +3,7 @@
 /**
  * jack_bauer - prints every minute of Jack Bauer's day
  * @a && @b: Contains the value 
- * Return:0
+ * Return:void
  */
 
 void jack_bauer(void)
