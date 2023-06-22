@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- *print_diagonal - prints a line n 
+ *print_diagonal - prints a line n
  *@n: number of '\'
  *Return: void
  */
