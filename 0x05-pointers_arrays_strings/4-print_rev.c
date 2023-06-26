@@ -7,9 +7,8 @@
 void print_rev(char *s)
 {
 int len;
-for (len = 0; s[len] != '\0')
+for (len = 0; s[len] != '\0'; len++)
 {
-len++
 }
 int y;
 for (y = len; y >= 0; y--)
