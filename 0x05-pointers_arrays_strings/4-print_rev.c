@@ -10,7 +10,9 @@ int len;
 for (len = 0; s[len] != '\0'; len++)
 {
 }
+
 int y;
+
 for (y = len; y >= 0; y--)
 {
 _putchar(s[y]);
