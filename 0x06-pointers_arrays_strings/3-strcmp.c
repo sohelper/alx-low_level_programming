@@ -17,5 +17,5 @@ if (*s1 != *s2)
 {
 y = *s1 - *s2;
 }
-return (y);
+return (0);
 }
