@@ -17,6 +17,6 @@ return (s + i);
 }
 else
 {
-return (null);
+return (NULL);
 }
 }
