@@ -21,6 +21,6 @@ sahar = malloc(sizeof(char) * (len + 1));
 if (sahar == 0)
 return (NULL);
 for (i = 0; i <= len; i++)
-sahar[i] = str[i];
+sahar[i] = str[len];
 return sahar;
 }
