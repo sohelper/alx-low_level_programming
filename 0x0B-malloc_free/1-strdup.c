@@ -8,19 +8,22 @@
  */
 char *_strdup(char *str)
 {
-char *sahar;
-unsigned int len;
-unsigned int i;
-if (str == 0)
-{
-return (NULL);
-}
-for (len = 0; str[len] != '\0'; len++)
-;
-sahar = malloc(sizeof(char) * (len + 1));
-if (sahar == 0)
-return (NULL);
-for (i = 0; i <= len; i++)
-sahar[i] = str[len];
-return sahar;
+char *strout;
+	unsigned int i, j;
+
+	if (str == NULL)
+		return (NULL);
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
+
+	strout = (char *)malloc(sizeof(char) * (i + 1));
+
+	if (strout == NULL)
+		return (NULL);
+
+	for (j = 0; j <= i; j++)
+		strout[j] = str[j];
+
+	return (strout);
 }
