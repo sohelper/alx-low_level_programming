@@ -5,6 +5,6 @@
  */
 int main(void)
 {
-printf("%s\n", __NAME__);
+printf("%s\n", __FILE___);
 return (0);
 }
