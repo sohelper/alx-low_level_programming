@@ -1,26 +1,29 @@
-#include "lists.h"
+#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
+#include "lists.h"
 
 /**
- * print_listint - Print elements of a singly linked list.
- * @h: Pointer to a list.
- * Return: Integer.
- **/
-
-size_t print_listint(const listint_t *h)
+ * print_list - check the code for Holberton School students.
+ * @h: name of the list
+ * Return: the number of nodes.
+ */
+size_t print_list(const list_t *h)
 {
-const list_t *cursor = h;
-size_t count = 0;
+int count = 0;
 
-while (cursor != NULL)
+while (h)
 {
-if (cursor->str != NULL)
-printf("[%d] %s\n", cursor->len, cursor->str);
-else
+if (h->str == NULL)
+{
 printf("[0] (nil)\n");
-count += 1;
-cursor = cursor->next;
 }
-
+else
+{
+printf("[%d] %s\n", h->len, h->str);
+}
+count++;
+h = h->next;
+}
 return (count);
 }
