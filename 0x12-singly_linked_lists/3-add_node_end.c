@@ -3,10 +3,9 @@
 #include "lists.h"
 
 /**
- * _strlen - finds the length of a string
- * @str: string to find the length of
- *
- * Return: length of string
+ * _strlen -length of a string
+ * @str: string
+ * Return: length
  */
 unsigned int _strlen(char *str)
 {
