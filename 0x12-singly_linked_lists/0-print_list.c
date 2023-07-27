@@ -9,15 +9,18 @@
 
 size_t print_listint(const listint_t *h)
 {
-const listint_t *tp;
-unsigned int cntr = 0;
+const list_t *cursor = h;
+size_t count = 0;
 
-tp = h;
-while (tp)
+while (cursor != NULL)
 {
-printf("%d\n", tp->n);
-cntr++;
-tp = tp->next;
+if (cursor->str != NULL)
+printf("[%d] %s\n", cursor->len, cursor->str);
+else
+printf("[0] (nil)\n");
+count += 1;
+cursor = cursor->next;
 }
-return (cntr);
+
+return (count);
 }
