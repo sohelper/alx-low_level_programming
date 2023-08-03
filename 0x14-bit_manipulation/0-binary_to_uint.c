@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 /**
  * binary_to_uint - converts a binary to an unsigned int
  * @b: the binary number
@@ -25,9 +25,9 @@ return (decimal);
 }
 
 /**
- * check_valid_string - checks if a string has only 0's and 1's
+ * check_valid_string - checks if a string is valid
  * @b: string
- * Return: 1
+ * Return: 1 and 0
  */
 int check_valid_string(const char *b)
 {
