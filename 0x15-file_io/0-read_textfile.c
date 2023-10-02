@@ -2,32 +2,36 @@
 #include <stdlib.h>
 
 /**
-* check_file_content - verify code of students at Holberton School.
-* @file_name: file to open and read
-* @num_letters: number of letters to read and print
-* Return: number of letters printed
-*/
+ * read_textfile - Reads a text file and prints it to POSIX stdout
+ * @filename: The path to the file to read
+ * @letters: Number of letters to read and print
+ * Return: The number of letters read and printed, or 0 on failure
+ */
 
-ssize_t print_text_file(const char *file_name, size_t num_letters)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-ssize_t open_fd, chars_read, chars_written;
-char *buf;
+    ssize_t file_descriptor, read_bytes, write_bytes;
+    char *buffer;
 
-if (file_name == NULL)
-	return (0);
-buf = malloc(sizeof(char) * num_letters);
-if (buf == NULL)
-	return (0);
-open_fd = open(file_name, O_RDONLY);
-chars_read = read(open_fd, buf, num_letters);
-chars_written = write(STDOUT_FILENO, buf, chars_read);
+    if (filename == NULL)
+        return (0);
 
-if (open_fd == -1 || chars_read == -1 || chars_written == -1 || chars_written != chars_read)
-{
-	free(buf);
-	return (0);
-}
-free(buf);
-close(open_fd);
-return (chars_written);
+    buffer = malloc(sizeof(char) * letters);
+    if (buffer == NULL)
+        return (0);
+
+    file_descriptor = open(filename, O_RDONLY);
+    read_bytes = read(file_descriptor, buffer, letters);
+    write_bytes = write(STDOUT_FILENO, buffer, read_bytes);
+
+    if (file_descriptor == -1 || read_bytes == -1 || write_bytes == -1 || write_bytes != read_bytes)
+    {
+        free(buffer);
+        return (0);
+    }
+
+    free(buffer);
+    close(file_descriptor);
+
+    return (write_bytes);
 }
