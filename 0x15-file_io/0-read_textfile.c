@@ -7,46 +7,40 @@
 * Return: number of letters printed
 */
 
-ssize_t check_file_content(const char *file_name, size_t num_letters)
+ssize_t print_text_file(const char *file_name, size_t num_letters)
 {
-	ssize_t letters_printed;
-	int open_file;
-	char *file_text;
+  int file_desc;
+  int chars_read, chars_written;
+  char *buffer;
 
-	if (!file_name)
-		return (0);
-	file_text = malloc(sizeof(char) * num_letters + 1);
+  if (!file_name)
+    return (0);
 
-	if (file_text == NULL)
-		return (0);
+  file_desc = open(file_name, O_RDONLY);
+  if (file_desc < 0)
+    return (0);
 
-	open_file = open(file_name, O_RDONLY);
+  buffer = malloc(sizeof(char) * num_letters);
+  if (!buffer)
+    return (0);
 
-	if (open_file == -1)
-	{
-		free(file_text);
-		return (0);
-	}
+  chars_read = read(file_desc, buffer, num_letters);
+  if (chars_read < 0)
+  {
+    free(buffer);
+    return (0);
+  }
 
-	letters_printed = read(open_file, file_text, sizeof(char) * num_letters);
+  buffer[chars_read] = '\0';
+  close(file_desc);
 
-	if (letters_printed == -1)
-	{
-		free(file_text);
-		close(open_file);
-		return (0);
-	}
+  chars_written = write(STDOUT_FILENO, buffer, chars_read);
+  if (chars_written < 0)
+  {
+    free(buffer);
+    return (0);
+  }
 
-	letters_printed = write(STDOUT_FILENO, file_text, letters_printed);
-
-	if (letters_printed == -1)
-	{
-		free(file_text);
-		close(open_file);
-		return (0);
-	}
-
-	free(file_text);
-	close(open_file);
-	return (letters_printed);
+  free(buffer);
+  return (chars_written);
 }
