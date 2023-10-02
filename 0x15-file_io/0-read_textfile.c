@@ -9,38 +9,24 @@
 
 ssize_t print_text_file(const char *file_name, size_t num_letters)
 {
-  int file_desc;
-  int chars_read, chars_written;
-  char *buffer;
+ssize_t open_fd, chars_read, chars_written;
+char *buf;
 
-  if (!file_name)
-    return (0);
+if (file_name == NULL)
+	return (0);
+buf = malloc(sizeof(char) * num_letters);
+if (buf == NULL)
+	return (0);
+open_fd = open(file_name, O_RDONLY);
+chars_read = read(open_fd, buf, num_letters);
+chars_written = write(STDOUT_FILENO, buf, chars_read);
 
-  file_desc = open(file_name, O_RDONLY);
-  if (file_desc < 0)
-    return (0);
-
-  buffer = malloc(sizeof(char) * num_letters);
-  if (!buffer)
-    return (0);
-
-  chars_read = read(file_desc, buffer, num_letters);
-  if (chars_read < 0)
-  {
-    free(buffer);
-    return (0);
-  }
-
-  buffer[chars_read] = '\0';
-  close(file_desc);
-
-  chars_written = write(STDOUT_FILENO, buffer, chars_read);
-  if (chars_written < 0)
-  {
-    free(buffer);
-    return (0);
-  }
-
-  free(buffer);
-  return (chars_written);
+if (open_fd == -1 || chars_read == -1 || chars_written == -1 || chars_written != chars_read)
+{
+	free(buf);
+	return (0);
+}
+free(buf);
+close(open_fd);
+return (chars_written);
 }
